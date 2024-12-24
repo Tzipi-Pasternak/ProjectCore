@@ -1,69 +1,63 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 using ProjectCore.Models;
+using ProjectCore.Interfaces;
+using ProjectCore.Services;
 
-namespace ProjectCore.Controllers; 
-
+namespace ProjectCore.Controllers
+{
 [ApiController]
 [Route("[controller]")]
 public class JewelryController : ControllerBase
 {
-    private static List<Jewelry> list;
-    static JewelryController()
+    private IJewelryService jewelryService;
+    public JewelryController(IJewelryService jewelryService)
     {
-        list = new List<Jewelry> 
-        {
-            new Jewelry { Id = 1, Name = "pearlNecklace", Price = 1500, Category = "necklace" },
-            new Jewelry { Id = 2, Name = "pandoraBracelet", Price = 250, Category = "bracelet" },
-            new Jewelry { Id = 3, Name = "goldWatch", Price = 6000, Category = "watch" }
-        };
+        this.jewelryService = jewelryService;
     }
 
     [HttpGet]
-    public IEnumerable<Jewelry> Get()
-    {
-        return list;
-    }
+    public ActionResult<List<Jewelry>> GetAll() =>
+        jewelryService.GetAll();
 
     [HttpGet("{id}")]
     public ActionResult<Jewelry> Get(int id)
     {
-        var Jewelry = list.FirstOrDefault(p => p.Id == id);
+        var Jewelry = jewelryService.Get(id);
         if (Jewelry == null)
-            return BadRequest("invalid id");
+            return NotFound();
         return Jewelry;
     }
 
     [HttpPost]
-    public ActionResult Insert(Jewelry newJewelry)
+    public IActionResult Create(Jewelry jewelry)
     {        
-        var maxId = list.Max(p => p.Id);
-        newJewelry.Id = maxId + 1;
-        list.Add(newJewelry);
-        return CreatedAtAction(nameof(Insert), new { id = newJewelry.Id }, newJewelry);
+        jewelryService.Add(jewelry);
+        return CreatedAtAction(nameof(Create), new { id = jewelry.Id }, jewelry);
     }  
 
     
     [HttpPut("{id}")]
-    public ActionResult Update(int id, Jewelry newJewelry)
+    public ActionResult Update(int id, Jewelry jewelry)
     { 
-        var oldJewelry = list.FirstOrDefault(p => p.Id == id);
-        if (oldJewelry == null) 
-            return BadRequest("invalid id");
-        if (newJewelry.Id != oldJewelry.Id)
-            return BadRequest("id mismatch");
-        oldJewelry.Name = newJewelry.Name;
-        oldJewelry.Price = newJewelry.Price;
-        oldJewelry.Category = newJewelry.Category;
+        if(id != jewelry.Id)
+            return BadRequest();
+        var exitingJewelry = jewelryService.Get(id);
+        if (exitingJewelry is null)
+            return NotFound();
+        jewelryService.Update(jewelry);
         return NoContent();
     } 
 
     [HttpDelete("{id}")]
-    public ActionResult Remove(int id)
+    public ActionResult Delete(int id)
     {
-        var oldJewelry = list.FirstOrDefault(p => p.Id == id);
-        if (oldJewelry == null) 
-            return BadRequest("invalid id");
-        list.Remove(oldJewelry);
-        return NoContent();
+        var jewelry = jewelryService.Get(id);
+        if (jewelry is null) 
+            return NotFound();
+        jewelryService.Delete(id);
+        return Content(jewelryService.Count.ToString());
     }
+}
 }
