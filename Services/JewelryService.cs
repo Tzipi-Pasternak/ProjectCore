@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace ProjectCore.Services
 {
-    public class JewelryService: IJewelryService
+    public class JewelryService : IJewelryService
     {
-        List<Jewelry> jewelryList { get;}
+        List<Jewelry> jewelryList { get; }
         int nextId = 4;
         public JewelryService()
         {
-            jewelryList = new List<Jewelry> 
+            jewelryList = new List<Jewelry>
             {
                 new Jewelry { Id = 1, Name = "pearlNecklace", Price = 1500, Category = "necklace" },
                 new Jewelry { Id = 2, Name = "pandoraBracelet", Price = 250, Category = "bracelet" },
@@ -32,7 +32,7 @@ namespace ProjectCore.Services
         public void Update(Jewelry jewelry)
         {
             var index = jewelryList.FindIndex(j => j.Id == jewelry.Id);
-            if(index == -1)
+            if (index == -1)
                 return;
             jewelryList[index] = jewelry;
         }
