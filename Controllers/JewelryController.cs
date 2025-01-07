@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using ProjectCore.Models;
 using ProjectCore.Interfaces;
-using ProjectCore.Services;
 
 namespace ProjectCore.Controllers
 {

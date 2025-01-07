@@ -1,7 +1,5 @@
 using ProjectCore.Interfaces;
 using ProjectCore.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProjectCore.Services
 {
@@ -47,4 +45,13 @@ namespace ProjectCore.Services
 
         public int Count { get => jewelryList.Count(); }
     }
+
+    public static class JewelryServiceHelper
+    {
+        public static void AddJewelryService(this IServiceCollection services)
+        {
+            services.AddSingleton<IJewelryService, JewelryService>();
+        }
+    }
+
 }
