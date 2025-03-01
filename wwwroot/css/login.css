@@ -1,0 +1,94 @@
+/* עיצוב כללי */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+    /* רקע צבעים בהירים */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* קופסת הלוגין */
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* אנימציה לכניסת הדף */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* כותרת */
+h2 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 24px;
+}
+
+/* שדות טקסט */
+input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background-color: #f9f9f9;
+}
+
+/* אפקט מעבר כשמתמקדים בשדה */
+input:focus {
+    border-color: #ff80ab;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(255, 128, 171, 0.5);
+}
+
+/* כפתור התחברות */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #FF9A9E, #FAD0C4);
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* אפקט לחיצה על הכפתור */
+button:hover {
+    background: linear-gradient(135deg, #FF758C, #FF7EB3);
+    transform: scale(1.05);
+}
+
+/* הודעת שגיאה */
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}

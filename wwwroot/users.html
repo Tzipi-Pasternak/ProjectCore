@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="userItems"></tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <button id="addButton" onclick="toggleAddForm()">Add User</button>
+        <!-- טופס הוספת משתמש -->
+        <div id="addForm" class="form-container">
+            <h3>Add User</h3>
+            <form action="javascript:void(0);" onsubmit="addUser()">
+                <input type="text" id="add-username" placeholder="Username" required />
+                <input type="password" id="add-password" placeholder="Password" required />
+                <input type="email" id="add-email" placeholder="Email" required />
+                <input type="submit" value="Add">
+                <a onclick="closeInputAdd()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <!-- טופס עריכת משתמש -->
+        <div id="editForm" class="form-container">
+            <h3>Edit User</h3>
+            <form action="javascript:void(0);" onsubmit="updateUser()">
+                <input type="hidden" id="edit-id">
+                <input type="text" id="edit-username" placeholder="Username" required />
+                <input type="password" id="edit-password" placeholder="Password" required />
+                <input type="email" id="edit-email" placeholder="Email" required />
+                <input type="submit" value="Save">
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <p id="counter"></p>
+    </div>
+
+    <script src="js/user.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
+</body>
+
+</html>

@@ -8,12 +8,14 @@ namespace ProjectCore.Interfaces
 
         Jewelry Get(int id);
 
-        void Add(Jewelry jewelry);
+        void Add(Jewelry jewelry, int userId);
 
         void Delete(int id);
 
-        void Update(Jewelry jewelry);
+        void Update(Jewelry jewelry, int userId);
 
         int Count { get; }
+
+        void DeleteJewelryByUserId(int userId);
     }
 }

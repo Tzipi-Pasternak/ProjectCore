@@ -1,14 +1,44 @@
-const uri = '/jewelry';
+let uri = '/jewelry';
+
 let jewelryItems = [];
 
+// קבלת ה-token מה-sessionStorage
+function getToken() {
+    return sessionStorage.getItem("token"); // קבלת ה-token
+}
+
+// פונקציה להחזרת פריטים מהממשק
 function getItems() {
-    fetch(uri)
-        .then(response => response.json())
+    const token = getToken();  // קבלת ה-token
+    fetch(uri, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': token  // שליחת ה-token ב-headers
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch items');
+            }
+            return response.json();
+        })
         .then(data => _displayItems(data))
         .catch(error => console.error('Unable to get items.', error));
 }
 
+function toggleAddForm() {
+    const addForm = document.getElementById('addForm');
+    if (addForm.style.display === 'none' || addForm.style.display === '') {
+        addForm.style.display = 'block';
+    } else {
+        addForm.style.display = 'none';
+    }
+}
+
+// פונקציה להוספת פריט חדש
 function addItem() {
+    const token = getToken();  // קבלת ה-token
     const addNameTextbox = document.getElementById('add-name');
     const addPriceTextbox = document.getElementById('add-price');
     const addCategoryTextbox = document.getElementById('add-category');
@@ -23,7 +53,8 @@ function addItem() {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token  // שליחת ה-token ב-headers
         },
         body: JSON.stringify(item)
     })
@@ -35,16 +66,27 @@ function addItem() {
             addCategoryTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
+    closeInputAdd();
 }
 
+function closeInputAdd() {
+    document.getElementById('addForm').style.display = 'none';
+}
+
+// פונקציה למחיקת פריט
 function deleteItem(id) {
+    const token = getToken();  // קבלת ה-token
     fetch(`${uri}/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': token  // שליחת ה-token ב-headers
+        }
     })
         .then(() => getItems())
         .catch(error => console.error('Unable to delete item.', error));
 }
 
+// פונקציה להציג את טופס העריכה
 function displayEditForm(id) {
     const item = jewelryItems.find(item => item.id === id);
 
@@ -55,7 +97,9 @@ function displayEditForm(id) {
     document.getElementById('editForm').style.display = 'block';
 }
 
+// פונקציה לעדכון פריט
 function updateItem() {
+    const token = getToken();  // קבלת ה-token
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
@@ -68,7 +112,8 @@ function updateItem() {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token  // שליחת ה-token ב-headers
         },
         body: JSON.stringify(item)
     })
@@ -79,15 +124,18 @@ function updateItem() {
     return false;
 }
 
+// פונקציה לסגירת טופס העריכה
 function closeInput() {
     document.getElementById('editForm').style.display = 'none';
 }
 
+// פונקציה לעדכון מונה הפריטים
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'jewelry item' : 'jewelry items';
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    // document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
 
+// פונקציה להצגת המוצרים בטבלה
 function _displayItems(data) {
     const tBody = document.getElementById('jewelryItems');
     tBody.innerHTML = '';
@@ -125,3 +173,15 @@ function _displayItems(data) {
 
     jewelryItems = data;
 }
+
+function initPage() {
+    const token = getToken();
+    if (!token)
+        // אם אין טוקן, הפניה לדף הלוגין
+        window.location.href = 'login.html';
+    else
+        document.body.classList.add('show');
+}
+
+// קריאה לפונקציה בעת טעינת הדף
+document.addEventListener('DOMContentLoaded', initPage);

@@ -9,4 +9,6 @@ public class Jewelry
     public double Price { get; set; }
     
     public string? Category { get; set; }
+
+    public int UserId{ get; set; }
 }
