@@ -3,7 +3,7 @@ let userRole = '';
 let usersItems = [];
 
 function getToken() {
-    return sessionStorage.getItem("token");
+    return localStorage.getItem("token");
 }
 
 // פונקציה לבדוק את הרשאות המשתמש

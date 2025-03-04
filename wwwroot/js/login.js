@@ -25,8 +25,8 @@ function login(event) {
             else throw new Error("Unauthorized");
         })
         .then(token => {
-            sessionStorage.setItem("token", "Bearer " + token);
-            console.log(sessionStorage.getItem("token"));
+            localStorage.setItem("token", "Bearer " + token);
+            console.log(localStorage.getItem("token"));
 
             // פענוח ה-token ושמירה בפרטי המשתמש
             const userType = getUserTypeFromToken(token);
@@ -77,8 +77,8 @@ function user(){
 
 // בדיקה אם המשתמש כבר מחובר
 document.addEventListener("DOMContentLoaded", function () {
-    if (sessionStorage.getItem("token")) {
-        const token = sessionStorage.getItem("token").split(' ')[1];
+    if (localStorage.getItem("token")) {
+        const token = localStorage.getItem("token").split(' ')[1];
         const userType = getUserTypeFromToken(token);
         showButtonsBasedOnRole(userType);
     }

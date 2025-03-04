@@ -2,9 +2,9 @@ let uri = '/jewelry';
 
 let jewelryItems = [];
 
-// קבלת ה-token מה-sessionStorage
+// קבלת ה-token מה-localStorage
 function getToken() {
-    return sessionStorage.getItem("token"); // קבלת ה-token
+    return localStorage.getItem("token"); // קבלת ה-token
 }
 
 // פונקציה להחזרת פריטים מהממשק
