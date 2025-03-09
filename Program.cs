@@ -64,7 +64,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.DateFormatPath(pathFormat: "Logs/log-{date:format=yyyy-MM-dd}.txt")
     .CreateLogger();
-
 builder.Host.UseSerilog();
 
 var app = builder.Build();

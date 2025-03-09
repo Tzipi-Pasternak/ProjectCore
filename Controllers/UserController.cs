@@ -92,7 +92,6 @@ namespace ProjectCore.Controllers
         [Route("[action]")]
         public IActionResult Login([FromBody] User user)
         {
-            Console.WriteLine("Login endpoint reached");  // בדוק אם זה מודפס
             var result = userService.Login(user);
             if (result == null)
                 return Unauthorized();

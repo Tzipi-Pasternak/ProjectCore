@@ -1,7 +1,7 @@
 const uri = "/User/Login";
 
 function login(event) {
-    event.preventDefault(); // מונע רענון של הדף
+    event.preventDefault(); 
 
     const userName = document.getElementById("userName").value;
     const password = document.getElementById("password").value;
@@ -26,8 +26,7 @@ function login(event) {
         })
         .then(token => {
             localStorage.setItem("token", "Bearer " + token);
-            console.log(localStorage.getItem("token"));
-
+ 
             // פענוח ה-token ושמירה בפרטי המשתמש
             const userType = getUserTypeFromToken(token);
 
@@ -36,7 +35,6 @@ function login(event) {
 
             // מחיקת הודעת שגיאה אם הכל תקין
             document.getElementById('error-message').style.display = 'none';
-            // window.location.href = "tasks.html"; // הפניה לדף משימות
         })
         .catch(error => {
             console.log("error", error);        
@@ -48,8 +46,8 @@ function login(event) {
 // פונקציה לחילוץ סוג המשתמש מה-token (JWT)
 function getUserTypeFromToken(token) {
     const payload = token.split('.')[1];
-    const decodedPayload = JSON.parse(atob(payload)); // פענוח ה-payload
-    return decodedPayload.type; // החזרת סוג המשתמש (מנהל או רגיל)
+    const decodedPayload = JSON.parse(atob(payload));
+    return decodedPayload.type; 
 }
 
 // הצגת כפתורים שונים לפי סוג המשתמש

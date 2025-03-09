@@ -1,20 +1,19 @@
 let uri = '/jewelry';
-
 let jewelryItems = [];
 
 // קבלת ה-token מה-localStorage
 function getToken() {
-    return localStorage.getItem("token"); // קבלת ה-token
+    return localStorage.getItem("token"); 
 }
 
 // פונקציה להחזרת פריטים מהממשק
 function getItems() {
-    const token = getToken();  // קבלת ה-token
+    const token = getToken();  
     fetch(uri, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token 
         }
     })
         .then(response => {
@@ -38,7 +37,7 @@ function toggleAddForm() {
 
 // פונקציה להוספת פריט חדש
 function addItem() {
-    const token = getToken();  // קבלת ה-token
+    const token = getToken();  
     const addNameTextbox = document.getElementById('add-name');
     const addPriceTextbox = document.getElementById('add-price');
     const addCategoryTextbox = document.getElementById('add-category');
@@ -54,7 +53,7 @@ function addItem() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token  
         },
         body: JSON.stringify(item)
     })
@@ -75,11 +74,11 @@ function closeInputAdd() {
 
 // פונקציה למחיקת פריט
 function deleteItem(id) {
-    const token = getToken();  // קבלת ה-token
+    const token = getToken(); 
     fetch(`${uri}/${id}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token  
         }
     })
         .then(() => getItems())
@@ -99,7 +98,7 @@ function displayEditForm(id) {
 
 // פונקציה לעדכון פריט
 function updateItem() {
-    const token = getToken();  // קבלת ה-token
+    const token = getToken(); 
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
@@ -113,7 +112,7 @@ function updateItem() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token  
         },
         body: JSON.stringify(item)
     })
@@ -132,7 +131,6 @@ function closeInput() {
 // פונקציה לעדכון מונה הפריטים
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'jewelry item' : 'jewelry items';
-    // document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
 
 // פונקציה להצגת המוצרים בטבלה
@@ -174,13 +172,29 @@ function _displayItems(data) {
     jewelryItems = data;
 }
 
+const logOut = () => {
+    localStorage.removeItem("token");
+    initPage();
+}
+
 function initPage() {
     const token = getToken();
-    if (!token)
-        // אם אין טוקן, הפניה לדף הלוגין
+    if (!token) {
         window.location.href = 'login.html';
-    else
-        document.body.classList.add('show');
+        return;
+    }
+    try {
+        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        const expirationTime = tokenPayload.exp * 1000;
+        const currentTime = Date.now();
+        if (currentTime > expirationTime) {
+            window.location.href = 'login.html';
+        } else {
+            document.body.classList.add('show');
+        }
+    } catch (error) {
+        window.location.href = 'login.html';
+    }
 }
 
 // קריאה לפונקציה בעת טעינת הדף

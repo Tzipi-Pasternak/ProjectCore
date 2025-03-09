@@ -64,7 +64,7 @@ function addUser() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token  
         },
         body: JSON.stringify(newUser)
     })
@@ -90,7 +90,7 @@ function deleteUser(id) {
     fetch(`${uri}/${id}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': token  // שליחת ה-token ב-headers
+            'Authorization': token 
         }
     })
         .then(() => getItems())
@@ -115,7 +115,7 @@ function getCurrentUserId() {
     const token = getToken();
     if (token) {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.id; // ה-ID של המשתמש המחובר
+        return payload.id; 
     }
     return null;
 }
@@ -204,13 +204,40 @@ function _displayItems(data) {
     usersItems = data;
 }
 
+const logOut = () => {
+    localStorage.removeItem("token");
+    initPage();
+}
+
+function isTokenValid(token) {
+    if (!token) return false;
+    try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const exp = payload.exp * 1000;
+        return Date.now() < exp;
+    } catch (e) {
+        return false;
+    }
+}
+
 function initPage() {
     const token = getToken();
-    if (!token)
-        // אם אין טוקן, הפניה לדף הלוגין
+    if (!token) {
         window.location.href = 'login.html';
-    else
-        document.body.classList.add('show');
+        return;
+    }
+    try {
+        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        const expirationTime = tokenPayload.exp * 1000;
+        const currentTime = Date.now();
+        if (currentTime > expirationTime) {
+            window.location.href = 'login.html';
+        } else {
+            document.body.classList.add('show');
+        }
+    } catch (error) {
+        window.location.href = 'login.html';
+    }
 }
 
 // קריאה לפונקציה בעת טעינת הדף

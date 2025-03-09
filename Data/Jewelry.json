@@ -1,1 +1,142 @@
-[{"Id":1,"Name":"Pearl Necklace","Price":1500,"Category":"Necklace","UserId":2},{"Id":2,"Name":"Gold Bracelet","Price":1200,"Category":"Bracelet","UserId":2},{"Id":3,"Name":"Diamond Ring","Price":3000,"Category":"Ring","UserId":3},{"Id":4,"Name":"Silver Earrings","Price":850,"Category":"Earrings","UserId":4},{"Id":5,"Name":"Sapphire Pendant","Price":2100,"Category":"Necklace","UserId":5},{"Id":6,"Name":"Emerald Bracelet","Price":1900,"Category":"Bracelet","UserId":6},{"Id":7,"Name":"Ruby Ring","Price":2800,"Category":"Ring","UserId":7},{"Id":8,"Name":"Platinum Earrings","Price":3200,"Category":"Earrings","UserId":8},{"Id":9,"Name":"Opal Necklace","Price":1400,"Category":"Necklace","UserId":9},{"Id":10,"Name":"Cubic Zirconia Bracelet","Price":500,"Category":"Bracelet","UserId":10},{"Id":11,"Name":"Topaz Ring","Price":1700,"Category":"Ring","UserId":11},{"Id":12,"Name":"Amethyst Earrings","Price":1300,"Category":"Earrings","UserId":12},{"Id":13,"Name":"Turquoise Necklace","Price":900,"Category":"Necklace","UserId":13},{"Id":14,"Name":"Titanium Bracelet","Price":1100,"Category":"Bracelet","UserId":14},{"Id":15,"Name":"Garnet Ring","Price":1950,"Category":"Ring","UserId":15},{"Id":16,"Name":"Quartz Earrings","Price":800,"Category":"Earrings","UserId":16},{"Id":17,"Name":"Rose Gold Necklace","Price":2300,"Category":"Necklace","UserId":17},{"Id":18,"Name":"Stainless Steel Bracelet","Price":750,"Category":"Bracelet","UserId":18},{"Id":19,"Name":"Moonstone Ring","Price":2500,"Category":"Ring","UserId":19},{"Id":20,"Name":"Crystal Earrings","Price":650,"Category":"Earrings","UserId":20}]
+[
+    {
+        "Id": 1,
+        "Name": "Pearl Necklace",
+        "Price": 1500,
+        "Category": "Necklace",
+        "UserId": 2
+    },
+    {
+        "Id": 2,
+        "Name": "Gold Bracelet",
+        "Price": 1200,
+        "Category": "Bracelet",
+        "UserId": 2
+    },
+    {
+        "Id": 3,
+        "Name": "Diamond Ring",
+        "Price": 3000,
+        "Category": "Ring",
+        "UserId": 3
+    },
+    {
+        "Id": 4,
+        "Name": "Silver Earrings",
+        "Price": 850,
+        "Category": "Earrings",
+        "UserId": 4
+    },
+    {
+        "Id": 5,
+        "Name": "Sapphire Pendant",
+        "Price": 2100,
+        "Category": "Necklace",
+        "UserId": 5
+    },
+    {
+        "Id": 6,
+        "Name": "Emerald Bracelet",
+        "Price": 1900,
+        "Category": "Bracelet",
+        "UserId": 6
+    },
+    {
+        "Id": 7,
+        "Name": "Ruby Ring",
+        "Price": 2800,
+        "Category": "Ring",
+        "UserId": 7
+    },
+    {
+        "Id": 8,
+        "Name": "Platinum Earrings",
+        "Price": 3200,
+        "Category": "Earrings",
+        "UserId": 8
+    },
+    {
+        "Id": 9,
+        "Name": "Opal Necklace",
+        "Price": 1400,
+        "Category": "Necklace",
+        "UserId": 9
+    },
+    {
+        "Id": 10,
+        "Name": "Cubic Zirconia Bracelet",
+        "Price": 500,
+        "Category": "Bracelet",
+        "UserId": 10
+    },
+    {
+        "Id": 11,
+        "Name": "Topaz Ring",
+        "Price": 1700,
+        "Category": "Ring",
+        "UserId": 11
+    },
+    {
+        "Id": 12,
+        "Name": "Amethyst Earrings",
+        "Price": 1300,
+        "Category": "Earrings",
+        "UserId": 12
+    },
+    {
+        "Id": 13,
+        "Name": "Turquoise Necklace",
+        "Price": 900,
+        "Category": "Necklace",
+        "UserId": 13
+    },
+    {
+        "Id": 14,
+        "Name": "Titanium Bracelet",
+        "Price": 1100,
+        "Category": "Bracelet",
+        "UserId": 14
+    },
+    {
+        "Id": 15,
+        "Name": "Garnet Ring",
+        "Price": 1950,
+        "Category": "Ring",
+        "UserId": 15
+    },
+    {
+        "Id": 16,
+        "Name": "Quartz Earrings",
+        "Price": 800,
+        "Category": "Earrings",
+        "UserId": 16
+    },
+    {
+        "Id": 17,
+        "Name": "Rose Gold Necklace",
+        "Price": 2300,
+        "Category": "Necklace",
+        "UserId": 17
+    },
+    {
+        "Id": 18,
+        "Name": "Stainless Steel Bracelet",
+        "Price": 750,
+        "Category": "Bracelet",
+        "UserId": 18
+    },
+    {
+        "Id": 19,
+        "Name": "Moonstone Ring",
+        "Price": 2500,
+        "Category": "Ring",
+        "UserId": 19
+    },
+    {
+        "Id": 20,
+        "Name": "Crystal Earrings",
+        "Price": 650,
+        "Category": "Earrings",
+        "UserId": 20
+    }
+]

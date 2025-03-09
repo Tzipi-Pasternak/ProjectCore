@@ -38,10 +38,8 @@ namespace ProjectCore.Services
             File.WriteAllText(text, JsonSerializer.Serialize(userList));
         }
 
-        // public List<User>? GetAll() => userList;
         public List<User> GetAll() => userList ?? new List<User>();
 
-        // public User? Get(int id) => userList?.FirstOrDefault(j => j.Id == id);
         public User Get(int id) => userList?.FirstOrDefault(j => j.Id == id) ?? new User();
 
         public void Add(User user)
